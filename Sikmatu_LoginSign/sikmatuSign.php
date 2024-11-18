@@ -9,52 +9,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
     $confirmPassword = $_POST['confirm-password'];
 
-    // Validasi password
     if ($password !== $confirmPassword) {
-        $message = "<script>
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Oops...',
-                            text: 'Password dan Konfirmasi Password tidak cocok!',
-                        }).then(() => {
-                            window.location.href = 'sikmatuSign.php';
-                        });
-                    </script>";
-        echo $message;
+        // Validasi password tidak cocok
+        header("Location: sikmatuSign.php?status=password_mismatch");
         exit();
     }
-
+    
     // Hash password untuk keamanan
     $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-
+    
     // Masukkan data ke database
     $stmt = $conn->prepare("INSERT INTO user_data (email, username, password, role) VALUES (?, ?, ?, ?)");
     $stmt->bind_param("ssss", $email, $username, $hashedPassword, $role);
-
+    
     if ($stmt->execute()) {
-        $message = "<script>
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Selamat!',
-                            text: 'Akun Anda berhasil dibuat! Disarankan untuk melakukan login.',
-                        }).then(() => {
-                            window.location.href = 'sikmatuLog.php';
-                        });
-                    </script>";
-        echo $message;
+        // Redireksi ke halaman sukses
+        header("Location: sikmatuSign.php?status=success");
     } else {
-        $message = "<script>
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Terjadi kesalahan!',
-                            text: 'Error: " . $stmt->error . "',
-                        }).then(() => {
-                            window.location.href = 'sikmatuSign.php';
-                        });
-                    </script>";
-        echo $message;
-    }
-
+        // Redireksi ke halaman error
+        header("Location: sikmatuSign.php?status=error&error_message=" . urlencode($stmt->error));
+    }    
+    
     $stmt->close();
 }
 $conn->close();
@@ -71,7 +46,7 @@ $conn->close();
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background: url('img/teknikUnsoed.jpeg') no-repeat center center fixed;
+            background: url('../img/teknikUnsoed.jpeg') no-repeat center center fixed;
             background-size: cover;
             display: flex;
             justify-content: center;
@@ -144,7 +119,36 @@ $conn->close();
         <p>Sudah punya akun? <a href="sikmatuLog.php" class="link">Login</a></p>
     </div>
 
-    <!-- SweetAlert script placed at the bottom of the HTML body -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        // Ambil status dari URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const status = urlParams.get('status');
+        const errorMessage = urlParams.get('error_message');
+
+        if (status === 'password_mismatch') {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Password dan Konfirmasi Password tidak cocok!',
+            });
+        } else if (status === 'success') {
+            Swal.fire({
+                icon: 'success',
+                title: 'Selamat!',
+                text: 'Akun Anda berhasil dibuat!',
+            }).then(() => {
+                window.location.href = 'sikmatuLog.php'; // Redireksi setelah alert
+            });
+        } else if (status === 'error') {
+            Swal.fire({
+                icon: 'error',
+                title: 'Terjadi kesalahan!',
+                text: 'Error: ' + errorMessage,
+            }).then(() => {
+                window.location.href = 'sikmatuSign.php'; // Redireksi kembali ke form
+            });
+        }
+    </script>
 </body>
 </html>

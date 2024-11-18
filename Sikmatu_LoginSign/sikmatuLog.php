@@ -1,7 +1,12 @@
 <?php
 include 'koneksi.php';
+session_start();
 
-// Ambil data dari form
+$response = [
+    'status' => '',
+    'message' => ''
+];
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -19,20 +24,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Verifikasi password
         if (password_verify($password, $user['password'])) {
             // Login berhasil
-            session_start();
             $_SESSION['username'] = $user['username'];
             $_SESSION['role'] = $user['role'];
-            header("Location: dashboard.php");
+            $response['status'] = 'success';
+            $response['message'] = 'Login berhasil!';
         } else {
-            echo "Password salah.";
+            $response['status'] = 'error';
+            $response['message'] = 'Password salah.';
         }
     } else {
-        echo "Username atau Role tidak ditemukan.";
+        $response['status'] = 'error';
+        $response['message'] = 'Username atau Role tidak ditemukan.';
     }
 
     $stmt->close();
+    $conn->close();
+
+    echo json_encode($response);
+    exit();
 }
-$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -40,13 +50,14 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Login - SIKMATU</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background: url('img/teknikUnsoed.jpeg') no-repeat center center fixed;
+            background: url('../img/teknikUnsoed.jpeg') no-repeat center center fixed;
             background-size: cover;
             display: flex;
             justify-content: center;
@@ -100,7 +111,7 @@ $conn->close();
 <body>
     <div class="form-container">
         <h2>Login</h2>
-        <form action="sikmatuLog.php" method="post">
+        <form id="loginForm">
             <label for="role">Role:</label>
             <select name="role" id="role" required>
                 <option value="" disabled selected>Pilih Role</option>
@@ -108,13 +119,44 @@ $conn->close();
                 <option value="dosen">Dosen</option>
                 <option value="mahasiswa">Mahasiswa</option>
             </select>
-
             <input type="text" name="username" placeholder="Username" required>
             <input type="password" name="password" placeholder="Password" required>
             <button type="submit">Login</button>
         </form>
-
         <p>Belum punya akun? <a href="sikmatuSign.php" class="link">Sign Up</a></p>
     </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async function (e) {
+            e.preventDefault(); // Cegah submit form default
+            
+            const formData = new FormData(this);
+            const response = await fetch('sikmatuLog.php', {
+                method: 'POST',
+                body: formData
+            });
+            const result = await response.json();
+
+            if (result.status === 'success') {
+                Swal.fire({
+                    title: 'Berhasil!',
+                    text: result.message,
+                    icon: 'success',
+                    timer: 2000,
+                    showConfirmButton: false
+                }).then(() => {
+                    window.location.href = 'dashboard.php'; // Redirect setelah berhasil login
+                });
+            } else {
+                Swal.fire({
+                    title: 'Error!',
+                    text: result.message,
+                    icon: 'error',
+                    timer: 3000,
+                    showConfirmButton: false
+                });
+            }
+        });
+    </script>
 </body>
 </html>
