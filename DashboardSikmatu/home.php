@@ -1,5 +1,13 @@
 <?php
-require"koneksi.php";
+require"../Sikmatu_LoginSign/koneksi.php";
+session_start();
+if (!isset($_SESSION['username'])) {
+    header("Location: ../DashboardSikmatu/sikmatuLog.php");
+    exit();
+}
+
+echo "Selamat datang, " . $_SESSION['username'] . "!<br>";
+echo "Anda login sebagai " . $_SESSION['role'] . ".<br>";
 ?>
 
 <!DOCTYPE html>
@@ -86,7 +94,7 @@ require"koneksi.php";
                         <div class="row">
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-primary text-white mb-4">
-                                    <div class="card-body">Mahasiswa</div>
+                                    <div class="card-body">Jadwal Konseling</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
                                         <a class="small text-white stretched-link" href="#">Detail</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
@@ -95,7 +103,7 @@ require"koneksi.php";
                             </div>
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-warning text-white mb-4">
-                                    <div class="card-body">Dosen Koneslor</div>
+                                    <div class="card-body">Antrean Konseling</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
                                         <a class="small text-white stretched-link" href="#">Detail</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
@@ -104,7 +112,7 @@ require"koneksi.php";
                             </div>
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-success text-white mb-4">
-                                    <div class="card-body">Jadwal Konseling</div>
+                                    <div class="card-body">Feedback</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
                                         <a class="small text-white stretched-link" href="#">Detail</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>

@@ -5,3 +5,7 @@ Halaman Login SIKMATU
 
 Halaman Sign Up SIKMATU
 ![alt text](https://github.com/DefitSaputra/Sikmatu_ADS/blob/main/img/halaman_signUp.png?raw=true)
+
+Halaman Dashboard
+![alt text](https://github.com/DefitSaputra/Sikmatu_ADS/blob/main/img/halamanDashboard.png?raw=true)
+

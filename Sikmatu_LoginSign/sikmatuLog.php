@@ -145,7 +145,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     timer: 2000,
                     showConfirmButton: false
                 }).then(() => {
-                    window.location.href = 'dashboard.php'; // Redirect setelah berhasil login
+                    window.location.href = '../DashboardSikmatu/home.php'; // Redirect setelah berhasil login
                 });
             } else {
                 Swal.fire({
