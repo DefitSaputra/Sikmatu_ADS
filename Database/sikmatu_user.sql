@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 01 Des 2024 pada 18.45
+-- Waktu pembuatan: 10 Des 2024 pada 08.28
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -20,6 +20,28 @@ SET time_zone = "+00:00";
 --
 -- Database: `sikmatu_user`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `feedback`
+--
+
+CREATE TABLE `feedback` (
+  `id` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `stars` int(11) NOT NULL,
+  `message` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `feedback`
+--
+
+INSERT INTO `feedback` (`id`, `email`, `stars`, `message`, `created_at`) VALUES
+(1, 'defit.saputra@mhs.unsoed.ac.id', 5, 'pelayanan sangat baik', '2024-12-10 06:53:42'),
+(2, 'kevin@mhs.unsoed.ac.id', 4, 'Pelayanan oke namun, untuk saya masih butuh waktu lebih banyak untuk konseling', '2024-12-10 07:13:15');
 
 -- --------------------------------------------------------
 
@@ -59,6 +81,12 @@ INSERT INTO `user_data` (`id`, `role`, `email`, `username`, `password`, `nama`, 
 --
 
 --
+-- Indeks untuk tabel `feedback`
+--
+ALTER TABLE `feedback`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `user_data`
 --
 ALTER TABLE `user_data`
@@ -67,6 +95,12 @@ ALTER TABLE `user_data`
 --
 -- AUTO_INCREMENT untuk tabel yang dibuang
 --
+
+--
+-- AUTO_INCREMENT untuk tabel `feedback`
+--
+ALTER TABLE `feedback`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_data`
