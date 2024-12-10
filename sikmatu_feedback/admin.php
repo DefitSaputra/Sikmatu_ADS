@@ -1,5 +1,5 @@
 <?php
-include 'db.php';
+include 'connection.php';
 
 $result = $conn->query("SELECT * FROM feedback ORDER BY created_at DESC");
 ?>

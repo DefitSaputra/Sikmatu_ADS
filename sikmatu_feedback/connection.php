@@ -2,7 +2,7 @@
 $host = "localhost";
 $username = "root"; // Sesuaikan dengan username database Anda
 $password = "";     // Sesuaikan dengan password database Anda
-$database = "feedback_system";
+$database = "sikmatu_user";
 
 $conn = new mysqli($host, $username, $password, $database);
 

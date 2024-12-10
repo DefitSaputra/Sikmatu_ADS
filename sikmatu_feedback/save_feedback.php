@@ -1,5 +1,5 @@
 <?php
-include 'db.php';
+include 'connection.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->bind_param("sis", $email, $stars, $message);
 
     if ($stmt->execute()) {
-        echo "Feedback berhasil disimpan! <a href='index.html'>Kembali</a>";
+        echo "Feedback berhasil disimpan! <a href='feedback.php'>Kembali</a>";
     } else {
         echo "Terjadi kesalahan: " . $conn->error;
     }
