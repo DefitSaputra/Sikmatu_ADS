@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 01 Des 2024 pada 18.45
+-- Waktu pembuatan: 18 Des 2024 pada 10.53
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -20,6 +20,69 @@ SET time_zone = "+00:00";
 --
 -- Database: `sikmatu_user`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `antrian`
+--
+
+CREATE TABLE `antrian` (
+  `id` int(11) NOT NULL,
+  `jadwal_id` int(11) NOT NULL,
+  `nama_peserta` varchar(255) NOT NULL,
+  `status` enum('menunggu','selesai') DEFAULT 'menunggu'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `antrian`
+--
+
+INSERT INTO `antrian` (`id`, `jadwal_id`, `nama_peserta`, `status`) VALUES
+(1, 3, 'Defit ', 'selesai');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `feedback`
+--
+
+CREATE TABLE `feedback` (
+  `id` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `stars` int(11) NOT NULL,
+  `message` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `feedback`
+--
+
+INSERT INTO `feedback` (`id`, `email`, `stars`, `message`, `created_at`) VALUES
+(1, 'defit.saputra@mhs.unsoed.ac.id', 5, 'pelayanan sangat baik', '2024-12-10 06:53:42'),
+(2, 'kevin@mhs.unsoed.ac.id', 4, 'Pelayanan oke namun, untuk saya masih butuh waktu lebih banyak untuk konseling', '2024-12-10 07:13:15');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `jadwal_konseling`
+--
+
+CREATE TABLE `jadwal_konseling` (
+  `id` int(11) NOT NULL,
+  `tanggal` date NOT NULL,
+  `waktu` time NOT NULL,
+  `konselor` varchar(255) NOT NULL,
+  `keterangan` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `jadwal_konseling`
+--
+
+INSERT INTO `jadwal_konseling` (`id`, `tanggal`, `waktu`, `konselor`, `keterangan`) VALUES
+(3, '2024-12-11', '13:23:00', 'Pak Teguh', 'Adaaa');
 
 -- --------------------------------------------------------
 
@@ -44,19 +107,34 @@ CREATE TABLE `user_data` (
 --
 
 INSERT INTO `user_data` (`id`, `role`, `email`, `username`, `password`, `nama`, `jurusan`, `angkatan`, `foto`) VALUES
-(1, 'mahasiswa', 'defit.saputra@mhs.unsoed.ac.id', 'Defit_Saputra', '$2y$10$CDsDug3ONVkLcN7iRyns9.6woIpGd0NrI3R3B1nsyGquu49o9/2wC', '', '', 0, ''),
-(2, 'dosen', 'eddy.maryanto@dos.unsoed.ac.id', 'Eddy_Maryanto', '$2y$10$qiyQexD/luKK0B1.yM5iVu1XvGrtb1JlpiLYzZX.xd3rHziszyXZ6', '', '', 0, ''),
-(4, 'dosen', 'alfan.ridlo@mhs.unsoed.ac.id', 'Alfan_Fauzan', '$2y$10$LHMNywRiekuLs9JC4sD.g.kd/VrCPjEQQeY/Yl.XnldbK1/Mp8wlq', '', '', 0, ''),
-(5, 'dosen', 'alfan.ridlo@mhs.unsoed.ac.id', 'Alfan_Fauzan', '$2y$10$G8xAUY11mDHl6Jy9crKPtuzyUoQ8blXYfB.Ng2xQjmsBdAtZcOL.m', '', '', 0, ''),
-(6, 'dosen', 'alfan.ridlo@mhs.unsoed.ac.id', 'Alfan_Fauzan', '$2y$10$.zHHaNed51cRx71aKg1Iy.KDt/a8AupcgvOADZv0Mn7P/tIs7dXH2', '', '', 0, ''),
-(7, 'mahasiswa', 'rizky.amelia@mhs.unsoed.ac.id', 'Rizky_Amelia', '$2y$10$n7Y2KdKr9iPutAIDnUSKLe66TyK1MZuuLQCMVVigMv02X/O3iGLly', '', '', 0, ''),
-(8, 'mahasiswa', 'rizky.amelia@mhs.unsoed.ac.id', 'Rizky_Amelia', '$2y$10$JBwAlmBhtnvk3JkJbqxgYOIfHmIEwMm8MqKHi2ZqE0KqCc/EWA5oW', '', '', 0, ''),
-(9, 'mahasiswa', 'kevin@mhs.unsoed.ac.id', 'kevin_shesh', '$2y$10$scc/yRuWw0BHxv8QlRn.4eb/0MJYnLFjB9ORy9n7.MEoBXVKYlsgq', '', '', 0, ''),
-(10, 'mahasiswa', 'yuji.itadori@mhs.unsoed.ac.id', 'itadori_yuji', '$2y$10$23rbbxzjQ8a8K0FjDegf1OxrYQrLjwrxVSSWo9lKu6fEg5gOu0eyu', '', '', 0, '');
+(13, 'mahasiswa', 'rizky.amelia@mhs.unsoed.ac.id', 'Rizky_Amelia', 'rizky123', '', '', 0, ''),
+(14, 'mahasiswa', 'defit.saputra@mhs.unsoed.ac.id', 'Defit_Saputra', 'defit123', '', '', 0, ''),
+(15, 'dosen', 'eddy.maryanto@dos.unsoed.ac.id', 'Eddy_Maryanto', '12345', '', '', 0, ''),
+(16, 'admin', 'admin.defit@mhs.unsoed.ac.id', 'Admin_Defit', 'admindefit123', '', '', 0, ''),
+(18, 'admin', 'admin.fathur@mhs.unsoed.ac.id', 'Admin_Fathur', 'adminfathur123', '', '', 0, '');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indeks untuk tabel `antrian`
+--
+ALTER TABLE `antrian`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `jadwal_id` (`jadwal_id`);
+
+--
+-- Indeks untuk tabel `feedback`
+--
+ALTER TABLE `feedback`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `jadwal_konseling`
+--
+ALTER TABLE `jadwal_konseling`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indeks untuk tabel `user_data`
@@ -69,10 +147,38 @@ ALTER TABLE `user_data`
 --
 
 --
+-- AUTO_INCREMENT untuk tabel `antrian`
+--
+ALTER TABLE `antrian`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT untuk tabel `feedback`
+--
+ALTER TABLE `feedback`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT untuk tabel `jadwal_konseling`
+--
+ALTER TABLE `jadwal_konseling`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT untuk tabel `user_data`
 --
 ALTER TABLE `user_data`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+--
+
+--
+-- Ketidakleluasaan untuk tabel `antrian`
+--
+ALTER TABLE `antrian`
+  ADD CONSTRAINT `antrian_ibfk_1` FOREIGN KEY (`jadwal_id`) REFERENCES `jadwal_konseling` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

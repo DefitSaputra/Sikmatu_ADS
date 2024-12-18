@@ -1,0 +1,138 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('../img/teknikUnsoed.jpeg') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    padding: 10px 20px; /* Kurangi padding agar lebih pas */
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.9); /* Transparansi agar lebih elegan */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.5s ease;
+}
+
+.logo {
+    font-size: 32px;
+    color: #003399;
+    justify-content: space-between;
+    text-decoration: none;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    margin-right: 1000px;
+    margin-left: 20px;
+}
+
+.logo img {
+    width: 60px;
+    height: auto;
+    margin-right: 15px;
+    border-radius: 50%;
+}
+
+.logo span {
+    color: #003399;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.navbar button {
+    font-size: 13px; /* Ukuran font tombol */
+    padding: 10px 27px; /* Ukuran tombol lebih besar */
+    border: none;
+    border-radius: 8px; /* Sudut tombol lebih membulat */
+    cursor: pointer;
+    margin-left: 10px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-transform: uppercase; 
+}
+
+.btn-login {
+    background-color: #e6b800;
+    color: white;
+    margin-left: 40px;
+}
+
+.btn-login:hover {
+    background-color: #ffcc00; 
+}
+
+.btn-signup {
+    background-color: #002080;
+    color: white;
+}
+
+.btn-signup:hover {
+    background-color: #003399; 
+}
+
+.form-container {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+}
+
+.form-container h2 {
+    margin-bottom: 1rem;
+    color: #003399;
+}
+
+.form-container select,
+.form-container input[type="text"],
+.form-container input[type="password"],
+.form-container button {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+select, input {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+#loginSubmit {
+    background: linear-gradient(90deg, #003399, #FFD700);
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#loginSubmit:hover {
+    background: linear-gradient(90deg, #FFD700, #003399);
+}
+
+.link {
+    color: #003399;
+    text-decoration: none;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
