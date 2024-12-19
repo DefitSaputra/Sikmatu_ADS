@@ -1,26 +1,40 @@
-/*!
-    * Start Bootstrap - SB Admin v7.0.7 (https://startbootstrap.com/template/sb-admin)
-    * Copyright 2013-2023 Start Bootstrap
-    * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-sb-admin/blob/master/LICENSE)
-    */
-    // 
-// Scripts
-// 
+// Toggle Sidebar
+const toggleBtn = document.getElementById('sidebarToggle');
+const sidebar = document.querySelector('.sidebar');
 
-window.addEventListener('DOMContentLoaded', event => {
+toggleBtn.addEventListener('click', () => {
+    sidebar.classList.toggle('active');
+});
 
-    // Toggle the side navigation
-    const sidebarToggle = document.body.querySelector('#sidebarToggle');
-    if (sidebarToggle) {
-        // Uncomment Below to persist sidebar toggle between refreshes
-        // if (localStorage.getItem('sb|sidebar-toggle') === 'true') {
-        //     document.body.classList.toggle('sb-sidenav-toggled');
-        // }
-        sidebarToggle.addEventListener('click', event => {
-            event.preventDefault();
-            document.body.classList.toggle('sb-sidenav-toggled');
-            localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('sb-sidenav-toggled'));
-        });
+// Close sidebar when clicking outside
+document.addEventListener('click', (e) => {
+    if (!sidebar.contains(e.target) && !toggleBtn.contains(e.target)) {
+        sidebar.classList.remove('active');
     }
+});
 
+// Toggle Dropdown Profile
+const profile = document.querySelector('.profile');
+const dropdown = document.querySelector('.profile .dropdown');
+
+profile.addEventListener('click', (e) => {
+    e.stopPropagation(); // Prevent bubbling
+    dropdown.classList.toggle('show');
+});
+
+// Close dropdown when clicking outside
+document.addEventListener('click', () => {
+    dropdown.classList.remove('show');
+});
+
+// Toggle Submenu
+const submenuItems = document.querySelectorAll('.has-submenu');
+
+submenuItems.forEach(item => {
+    item.addEventListener('click', (e) => {
+        if (e.target.closest('.submenu')) return;
+        item.classList.toggle('active');
+        const submenu = item.querySelector('.submenu');
+        submenu.classList.toggle('show');
+    });
 });
