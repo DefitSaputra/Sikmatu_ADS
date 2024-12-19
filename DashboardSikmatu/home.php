@@ -1,143 +1,121 @@
 <?php
-require"../Sikmatu_LoginSign/koneksi.php";
+require "../Sikmatu_LoginSign/koneksi.php";
 session_start();
 if (!isset($_SESSION['username'])) {
     header("Location: ../DashboardSikmatu/sikmatuLog.php");
     exit();
 }
 
-echo "Selamat datang, " . $_SESSION['username'] . "!<br>";
-echo "Anda login sebagai " . $_SESSION['role'] . ".<br>";
+$userName = $_SESSION['username'];
+$userRole = $_SESSION['role'];
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Dashboard - SIKMATU</title>
-        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-        <link href="css/styles.css" rel="stylesheet" />
-        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-    </head>
-    <body class="sb-nav-fixed">
-        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <a class="navbar-brand ps-3" href="index.html">SIKMATU  </a>
-            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
-            <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-                <div class="input-group">
-                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                    <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
-                </div>
-            </form>
-            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#!">Settings</a></li>
-                        <li><a class="dropdown-item" href="#!">Activity Log</a></li>
-                        <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="#!">Logout</a></li>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <!-- Toggle Button -->
+    <button id="sidebarToggle" class="toggle-btn">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="logo">
+            <img src="../img/unsoed-logo.png" alt="Unsoed Logo" class="logo-img">
+            SIKMATU
+        </div>
+        <nav>
+            <ul>
+                <li class="active"><i class="fa-solid fa-globe"></i> Dashboard</li>
+                <li class="has-submenu">
+                    <i class="fa-solid fa-book"></i> Pages
+                    <i class="fa-solid fa-chevron-down"></i>
+                    <ul class="submenu">
+                        <li><i class="fa-regular fa-calendar"></i> <a href="jadwal.php" class="link">Jadwal Konseling</a></li>
+                        <li><i class="fa-solid fa-users"></i> <a href="antrian.php" class="link">Antrean Konseling</a></li>
+                        <li><i class="fa-regular fa-comment"></i> <a href="feedback.php" class="link">Feedback</a></li>
                     </ul>
                 </li>
+                <li><i class="fa-solid fa-sign-out-alt"></i> <a href="logout.php" class="link">Logout</a></li>
             </ul>
         </nav>
-        <div id="layoutSidenav">
-            <div id="layoutSidenav_nav">
-                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                    <div class="sb-sidenav-menu">
-                        <div class="nav">
-                            <div class="sb-sidenav-menu-heading">Core</div>
-                            <a class="nav-link" href="index.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Dashboard
-                            </a>
-                            <div class="sb-sidenav-menu-heading">Interface</div>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                Pages
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                                        Authentication
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="login.html">Login</a>
-                                            <a class="nav-link" href="register.html">Register</a>
-                                        </nav>
-                                    </div>
-                                </nav>
-                            </div>
-                            <div class="sb-sidenav-menu-heading">Addons</div>
-                            <a class="nav-link" href="tables.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Tables
-                            </a>
-                        </div>
-                    </div>
-                </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <header>
+            <h1>Dashboard</h1>
+            <div class="profile">
+                <img src="../img/6522516.png" alt="profile">
+                <div class="dropdown">
+                    <ul>
+                        <li><a href="logout.php">Logout</a></li>
+                    </ul>
+                </div>
             </div>
-            <div id="layoutSidenav_content">
-                <main>
-                    <div class="container-fluid px-4">
-                        <h1 class="mt-4">Dashboard</h1>
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Dashboard</li>
-                        </ol>
-                        <div class="row">
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-primary text-white mb-4">
-                                    <div class="card-body">Jadwal Konseling</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">Detail</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-warning text-white mb-4">
-                                    <div class="card-body">Antrean Konseling</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">Detail</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-success text-white mb-4">
-                                    <div class="card-body">Feedback</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">Detail</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-danger text-white mb-4">
-                                    <div class="card-body">Laporan</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="#">Detail</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                </main>
-            </div>
+        </header>
+
+        <!-- Selamat Datang -->
+        <div class="welcome-message">
+            <h2>Halo, selamat Datang di Sikmatu, <?php echo htmlspecialchars($userName); ?>!</h2>
+            <p>Anda login sebagai <?php echo htmlspecialchars($userRole); ?>.</p>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="assets/demo/chart-area-demo.js"></script>
-        <script src="assets/demo/chart-bar-demo.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
-        <script src="js/datatables-simple-demo.js"></script>
-    </body>
-</html>
+
+        <!-- Dashboard Cards -->
+        <section class="cards">
+            <div class="card blue">
+                <h2>Jadwal Konseling</h2>
+                <a href="#">Lihat Detail →</a>
+            </div>
+            <div class="card yellow">
+                <h2>Antrean Konseling</h2>
+                <a href="#">Lihat Detail →</a>
+            </div>
+            <div class="card green">
+                <h2>Feedback</h2>
+                <a href="#">Lihat Detail →</a>
+            </div>
+        </section>
+        <!-- Visi dan Misi -->
+        <section class="vision-mission">
+            <div class="vision">
+                <h2>VISI</h2>
+                <p>"Tim Bimbingan dan Konseling Unsoed mampu menyediakan layanan bimbingan dan konseling yang berkualitas bagi mahasiswa, turut mendukung UNSOED agar diakui dunia sebagai pusat pengembangan sumber daya pedesaan dan kearifan lokal."</p>
+            </div>
+            <div class="mission">
+                <h2>MISI</h2>
+                <ul>
+                    <li>Menyediakan layanan bimbingan dan konseling yang berkualitas untuk mahasiswa.</li>
+                    <li>Mempersiapkan mental mahasiswa dalam proses pendidikan sehingga dapat menyelesaikan studi secara tepat waktu.</li>
+                    <li>Menyiapkan lulusan Unsoed yang berkarakter Jenderal Soedirman.</li>
+                </ul>
+            </div>
+        </section>
+        <!-- Cara Kerja -->
+        <section class="workflow">
+            <h2>PSOSEDUR KONSELING SIKMATU</h2>
+            <div class="workflow-container">
+                <div class="workflow-step">
+                    <div class="icon">1</div>
+                    <h3>Mahasiswa melihat jadwal dosen yang tersedia.</h3>
+                </div>
+                <div class="workflow-step">
+                    <div class="icon">2</div>
+                    <h3>Mahasiswa melakukan pengajuan konseling melalui form yang disediakan.</h3>
+                </div>
+                <div class="workflow-step">
+                    <div class="icon">3</div>
+                    <h3>Mahasiswa mengisi feedback setelah melakukan konseling.</h3>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html> 
