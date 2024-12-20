@@ -1,5 +1,5 @@
 <?php
-require "../config/koneksi.php";
+require "../Sikmatu_LoginSign/koneksi.php";
 
 // Ambil data dari form
 $jadwal_id = $_POST['jadwal_id'];

@@ -40,8 +40,8 @@ $userRole = $_SESSION['role'];
                     <i class="fa-solid fa-book"></i> Pages
                     <i class="fa-solid fa-chevron-down"></i>
                     <ul class="submenu">
-                        <li><i class="fa-regular fa-calendar"></i> <a href="jadwal.php" class="link">Jadwal Konseling</a></li>
-                        <li><i class="fa-solid fa-users"></i> <a href="antrian.php" class="link">Antrean Konseling</a></li>
+                        <li><i class="fa-regular fa-calendar"></i> <a href="jadwal_mahasiswa/jadwal_mahasiswa.php" class="link">Jadwal Konseling</a></li>
+                        <li><i class="fa-solid fa-users"></i> <a href="antrian_mahasiswa/antrian_mahasiswa.php" class="link">Antrean Konseling</a></li>
                         <li><i class="fa-regular fa-comment"></i> <a href="feedback.php" class="link">Feedback</a></li>
                     </ul>
                 </li>
@@ -74,11 +74,11 @@ $userRole = $_SESSION['role'];
         <section class="cards">
             <div class="card blue">
                 <h2>Jadwal Konseling</h2>
-                <a href="#">Lihat Detail →</a>
+                <a href="jadwal_mahasiswa/jadwal_mahasiswa.php">Lihat Detail →</a>
             </div>
             <div class="card yellow">
                 <h2>Antrean Konseling</h2>
-                <a href="#">Lihat Detail →</a>
+                <a href="antrian_mahasiswa/antrian_mahasiswa.php">Lihat Detail →</a>
             </div>
             <div class="card green">
                 <h2>Feedback</h2>

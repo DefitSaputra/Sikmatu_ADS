@@ -1,5 +1,5 @@
 <?php
-require "../config/koneksi.php";
+require "../../Sikmatu_LoginSign/koneksi.php";
 
 if (isset($_POST['selesai'])) {
     $id = $_POST['id'];

@@ -4,7 +4,8 @@ session_start();
 
 $response = [
     'status' => '',
-    'message' => ''
+    'message' => '',
+    'redirect_url' => '' // Tambahkan field untuk URL pengalihan
 ];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -28,6 +29,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['role'] = $user['role'];
             $response['status'] = 'success';
             $response['message'] = 'Login berhasil!';
+            
+            // Tentukan URL berdasarkan role
+            switch ($user['role']) {
+                case 'admin':
+                    $response['redirect_url'] = '../sikmatu_admin/home.php';
+                    break;
+                case 'konselor':
+                    $response['redirect_url'] = '../sikmatu_dosen/home.php';
+                    break;
+                case 'mahasiswa':
+                    $response['redirect_url'] = '../sikmatu_mahasiswa/home.php';
+                    break;
+                default:
+                    $response['redirect_url'] = 'sikmatuLog.php';
+            }
         } else {
             $response['status'] = 'error';
             $response['message'] = 'Password salah.';
@@ -44,6 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     exit();
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -86,36 +103,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 
     <script>
-        document.getElementById('loginForm').addEventListener('submit', async function (e) {
-            e.preventDefault(); // Cegah submit form default
-            
-            const formData = new FormData(this);
-            const response = await fetch('sikmatuLog.php', {
-                method: 'POST',
-                body: formData
-            });
-            const result = await response.json();
+       document.getElementById('loginForm').addEventListener('submit', async function (e) {
+    e.preventDefault(); // Cegah submit form default
+    
+    const formData = new FormData(this);
+    const response = await fetch('sikmatuLog.php', {
+        method: 'POST',
+        body: formData
+    });
+    const result = await response.json();
 
-            if (result.status === 'success') {
-                Swal.fire({
-                    title: 'Berhasil!',
-                    text: result.message,
-                    icon: 'success',
-                    timer: 2000,
-                    showConfirmButton: false
-                }).then(() => {
-                    window.location.href = '../DashboardSikmatu/home.php'; // Redirect setelah berhasil login
-                });
-            } else {
-                Swal.fire({
-                    title: 'Error!',
-                    text: result.message,
-                    icon: 'error',
-                    timer: 3000,
-                    showConfirmButton: false
-                });
-            }
+    if (result.status === 'success') {
+        Swal.fire({
+            title: 'Berhasil!',
+            text: result.message,
+            icon: 'success',
+            timer: 2000,
+            showConfirmButton: false
+        }).then(() => {
+            window.location.href = result.redirect_url; // Redirect berdasarkan role
         });
+    } else {
+        Swal.fire({
+            title: 'Error!',
+            text: result.message,
+            icon: 'error',
+            timer: 3000,
+            showConfirmButton: false
+        });
+    }
+});
     </script>
 </body>
 </html>
