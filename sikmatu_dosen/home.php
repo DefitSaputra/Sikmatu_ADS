@@ -2,7 +2,7 @@
 require "../Sikmatu_LoginSign/koneksi.php";
 session_start();
 if (!isset($_SESSION['username'])) {
-    header("Location: ../DashboardSikmatu/sikmatuLog.php");
+    header("Location: ../Sikmatu_LoginSign/sikmatuLog.php");
     exit();
 }
 
