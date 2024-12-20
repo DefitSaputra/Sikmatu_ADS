@@ -186,7 +186,7 @@
 
     <div class="container">
         <h1>Feedback Form</h1>
-        <form id="feedbackForm" action="save_feedback.php" method="POST">
+        <form id="feedbackForm" action="../sikmatu_feedback/save_feedback.php" method="POST">
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>
 
