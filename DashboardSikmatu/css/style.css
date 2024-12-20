@@ -31,6 +31,18 @@ body {
     align-items: center;
 }
 
+.logo-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center; 
+    gap: 10px;
+}
+
+.logo-link:hover {
+    color: #fff;
+}
+
 .logo-img {
     width: 30px;
     height: auto;

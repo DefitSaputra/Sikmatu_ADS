@@ -60,7 +60,7 @@ $conn->close();
             <label for="role">Role:</label>
             <select name="role" id="role" required>
                 <option value="" disabled selected>Pilih Role</option>
-                <option value="dosen">Dosen</option>
+                <option value="konselor">Konselor</option>
                 <option value="mahasiswa">Mahasiswa</option>
             </select>
             

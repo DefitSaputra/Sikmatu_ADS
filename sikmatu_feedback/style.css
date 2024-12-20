@@ -58,3 +58,51 @@ table th {
     background-color: #007BFF;
     color: white;
 }
+
+.star_rating {
+    display: flex;
+    justify-content: center;
+    gap: 8px; /* Beri jarak antar tombol bintang */
+    margin-bottom: 15px; /* Beri jarak antara rating bintang dan tombol submit */
+}
+
+.starRate {
+    position: relative; /* Perbaiki positioning */
+    display: flex;
+    gap: 5px; /* Tambahkan jarak antar bintang */
+    align-items: center;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.starRate .fa-star {
+    font-size: 2rem; /* Atur ukuran bintang */
+    color: #ccc; /* Warna default bintang */
+    transition: color 0.3s ease-in-out; /* Tambahkan efek transisi */
+}
+
+.starRate .fa-star.highlighted, 
+.starRate .fa-star:hover {
+    color: orange; /* Warna saat di-hover */
+}
+
+.starRate .fa-star.selected {
+    color: orange; /* Warna saat dipilih */
+}
+
+.btnSubmit {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 20px; /* Jarak antara tombol submit dengan elemen sebelumnya */
+}
+
+.btnSubmit:hover {
+    background: #0056b3;
+}

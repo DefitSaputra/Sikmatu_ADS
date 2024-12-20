@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Feedback Form</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../DashboardSikmatu/css/style.css">
+    <script src="../DashboardSikmatu/js/script.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         body {
         font-family: Arial, sans-serif;
@@ -119,6 +122,68 @@
     </style>
 </head>
 <body>
+
+ <!-- Toggle Button -->
+ <button id="sidebarToggle" class="toggle-btn">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="logo">
+            <a href="home.php" class="logo-link">
+            <img src="../img/unsoed-logo.png" alt="Unsoed Logo" class="logo-img">
+            SIKMATU
+            </a>
+        </div>
+       
+        <nav>
+            <ul>
+                <li class="active"><i class="fa-solid fa-globe"></i><a href="home.php" class="link"> Dashboard</a></li>
+                <li class="has-submenu">
+                    <i class="fa-solid fa-book"></i> Pages
+                    <i class="fa-solid fa-chevron-down"></i>
+                    <ul class="submenu">
+                        <li><i class="fa-regular fa-calendar"></i> <a href="jadwal.php" class="link">Jadwal Konseling</a></li>
+                        <li><i class="fa-solid fa-users"></i> <a href="antrian.php" class="link">Antrean Konseling</a></li>
+                        <li><i class="fa-regular fa-comment"></i> <a href="feedback.php" class="link">Feedback</a></li>
+                    </ul>
+                </li>
+                <li><i class="fa-solid fa-sign-out-alt"></i> <a href="logout.php" class="link">Logout</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <header>
+            <h1>Feedback</h1>
+            <div class="profile">
+                <img src="../img/6522516.png" alt="profile">
+                <div class="dropdown">
+                    <ul>
+                        <li><a href="logout.php">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+    
+         <!-- Dashboard Cards -->
+         <section class="cards">
+            <div class="card blue">
+                <h2>Jadwal Konseling</h2>
+                <a href="#">Lihat Detail →</a>
+            </div>
+            <div class="card yellow">
+                <h2>Antrean Konseling</h2>
+                <a href="#">Lihat Detail →</a>
+            </div>
+            <div class="card green">
+                <h2>Feedback</h2>
+                <a href="#">Lihat Detail →</a>
+            </div>
+        </section>
+
     <div class="container">
         <h1>Feedback Form</h1>
         <form id="feedbackForm" action="save_feedback.php" method="POST">
@@ -142,10 +207,8 @@
 
             <button type="submit" class="btnSubmit">Submit</button>
         </form>
-
-
+    </main>
     </div>
-    <script src="script.js"></script>
     <script>
         const stars = document.querySelectorAll('.starRate .fa-star');
         const starValue = document.getElementById('star-value');

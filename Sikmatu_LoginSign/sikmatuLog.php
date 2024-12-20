@@ -75,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <select name="role" id="role" required>
                 <option value="" disabled selected>Pilih Role</option>
                 <option value="admin">Admin</option>
-                <option value="dosen">Dosen</option>
+                <option value="konselor">Konselor</option>
                 <option value="mahasiswa">Mahasiswa</option>
             </select>
             <input type="text" name="username" placeholder="Username" required>
