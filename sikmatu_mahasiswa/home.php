@@ -14,7 +14,7 @@ $userRole = $_SESSION['role'];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Dashboard - Mahasiswa</title>
     <link rel="stylesheet" href="../DashboardSikmatu/css/style.css">
     <script src="../DashboardSikmatu/js/script.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -45,7 +45,7 @@ $userRole = $_SESSION['role'];
                         <li><i class="fa-regular fa-comment"></i> <a href="feedback.php" class="link">Feedback</a></li>
                     </ul>
                 </li>
-                <li><i class="fa-solid fa-sign-out-alt"></i> <a href="logout.php" class="link">Logout</a></li>
+                <li><i class="fa-solid fa-sign-out-alt"></i> <a href="../Sikmatu_LoginSign/logout.php" class="link">Logout</a></li>
             </ul>
         </nav>
     </aside>
@@ -53,12 +53,12 @@ $userRole = $_SESSION['role'];
     <!-- Main Content -->
     <main class="main-content">
         <header>
-            <h1>Dashboard</h1>
+            <h1>Dashboard - Mahasiswa</h1>
             <div class="profile">
                 <img src="../img/6522516.png" alt="profile">
                 <div class="dropdown">
                     <ul>
-                        <li><a href="logout.php">Logout</a></li>
+                        <li><a href="../Sikmatu_LoginSign/logout.php">Logout</a></li>
                     </ul>
                 </div>
             </div>
@@ -103,7 +103,7 @@ $userRole = $_SESSION['role'];
         </section>
         <!-- Cara Kerja -->
         <section class="workflow">
-            <h2>PSOSEDUR KONSELING SIKMATU</h2>
+            <h2>PROSEDUR KONSELING SIKMATU</h2>
             <div class="workflow-container">
                 <div class="workflow-step">
                     <div class="icon">1</div>

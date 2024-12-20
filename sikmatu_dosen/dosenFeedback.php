@@ -2,19 +2,22 @@
 require "../Sikmatu_LoginSign/koneksi.php";
 session_start();
 if (!isset($_SESSION['username'])) {
-    header("Location: ../Sikmatu_LoginSign/koneksi.php");
+    header("Location: ../DashboardSikmatu/sikmatuLog.php");
     exit();
 }
 
 $userName = $_SESSION['username'];
 $userRole = $_SESSION['role'];
+
+$result = $conn->query("SELECT * FROM feedback ORDER BY created_at ASC");
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Konselor</title>
+    <title>Feedback - Konselor</title>
+    <link rel="stylesheet" href="../sikmatu_feedback/style.css">
     <link rel="stylesheet" href="../DashboardSikmatu/css/style.css">
     <script src="../DashboardSikmatu/js/script.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -28,7 +31,7 @@ $userRole = $_SESSION['role'];
     <!-- Sidebar -->
     <aside class="sidebar">
         <div class="logo">
-            <a href="../home.php" class="logo-link">
+            <a href="home.php" class="logo-link">
             <img src="../img/unsoed-logo.png" alt="Unsoed Logo" class="logo-img">
             SIKMATU
             </a>
@@ -53,7 +56,7 @@ $userRole = $_SESSION['role'];
     <!-- Main Content -->
     <main class="main-content">
         <header>
-            <h1>Dashboard - Konselor</h1>
+            <h1>Halaman Feedback - Konselor</h1>
             <div class="profile">
                 <img src="../img/6522516.png" alt="profile">
                 <div class="dropdown">
@@ -63,12 +66,6 @@ $userRole = $_SESSION['role'];
                 </div>
             </div>
         </header>
-
-        <!-- Selamat Datang -->
-        <div class="welcome-message">
-            <h2>Halo, selamat Datang di Sikmatu, <?php echo htmlspecialchars($userName); ?>!</h2>
-            <p>Anda login sebagai <?php echo htmlspecialchars($userRole); ?>.</p>
-        </div>
 
         <!-- Dashboard Cards -->
         <section class="cards">
@@ -86,39 +83,31 @@ $userRole = $_SESSION['role'];
             </div>
         </section>
 
-        <!-- Visi dan Misi -->
-        <section class="vision-mission">
-            <div class="vision">
-                <h2>VISI</h2>
-                <p>"Tim Bimbingan dan Konseling Unsoed mampu menyediakan layanan bimbingan dan konseling yang berkualitas bagi mahasiswa, turut mendukung UNSOED agar diakui dunia sebagai pusat pengembangan sumber daya pedesaan dan kearifan lokal."</p>
-            </div>
-            <div class="mission">
-                <h2>MISI</h2>
-                <ul>
-                    <li>Menyediakan layanan bimbingan dan konseling yang berkualitas untuk mahasiswa.</li>
-                    <li>Mempersiapkan mental mahasiswa dalam proses pendidikan sehingga dapat menyelesaikan studi secara tepat waktu.</li>
-                    <li>Menyiapkan lulusan Unsoed yang berkarakter Jenderal Soedirman.</li>
-                </ul>
-            </div>
-        </section>
-        <!-- Cara Kerja -->
-        <section class="workflow">
-            <h2>PROSEDUR KONSELING SIKMATU</h2>
-            <div class="workflow-container">
-                <div class="workflow-step">
-                    <div class="icon">1</div>
-                    <h3>Mahasiswa melihat jadwal dosen yang tersedia.</h3>
-                </div>
-                <div class="workflow-step">
-                    <div class="icon">2</div>
-                    <h3>Mahasiswa melakukan pengajuan konseling melalui form yang disediakan.</h3>
-                </div>
-                <div class="workflow-step">
-                    <div class="icon">3</div>
-                    <h3>Mahasiswa mengisi feedback setelah melakukan konseling.</h3>
-                </div>
-            </div>
-        </section>
+        <div class="container">
+        <h1>Feedback Table</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Email</th>
+                    <th>Stars</th>
+                    <th>Message</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php while ($row = $result->fetch_assoc()): ?>
+                <tr>
+                    <td><?php echo htmlspecialchars($row['email']); ?></td>
+                    <td><?php echo htmlspecialchars($row['stars']); ?></td>
+                    <td><?php echo htmlspecialchars($row['message']); ?></td>
+                    <td><?php echo htmlspecialchars($row['created_at']); ?></td>
+                </tr>
+                <?php endwhile; ?>
+            </tbody>
+        </table>
+    </div>
+
+
     </main>
 </body>
 </html> 

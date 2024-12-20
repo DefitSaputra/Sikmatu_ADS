@@ -59,7 +59,7 @@ function samarkan_nama($no) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Antrian Konseling - Mahasiswa</title>
     <link rel="stylesheet" href="../../DashboardSikmatu/css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
     <script src="../../DashboardSikmatu/js/script.js" defer></script>
@@ -91,7 +91,7 @@ function samarkan_nama($no) {
                         <li><i class="fa-regular fa-comment"></i> <a href="../feedback.php" class="link">Feedback</a></li>
                     </ul>
                 </li>
-                <li><i class="fa-solid fa-sign-out-alt"></i> <a href="logout.php" class="link">Logout</a></li>
+                <li><i class="fa-solid fa-sign-out-alt"></i> <a href="../../Sikmatu_LoginSign/logout.php" class="link">Logout</a></li>
             </ul>
         </nav>
     </aside>
@@ -99,12 +99,12 @@ function samarkan_nama($no) {
     <!-- Main Content -->
     <main class="main-content">
         <header>
-            <h1>Dashboard</h1>
+            <h1>Antrian Konseling - Mahasiswa</h1>
             <div class="profile">
                 <img src="../../img/6522516.png" alt="profile">
                 <div class="dropdown">
                     <ul>
-                        <li><a href="logout.php">Logout</a></li>
+                        <li><a href="../../Sikmatu_LoginSign/logout.php">Logout</a></li>
                     </ul>
                 </div>
             </div>
@@ -128,7 +128,7 @@ function samarkan_nama($no) {
 
         <div class="container mt-5">
         <h1>Antrian Konseling</h1>
-        <a href="../jadwal_mahasiswa/jadwal_mahasiswa.php" class="btn btn-secondary">Kembali ke Dashboard</a>
+        <a href="../home.php" class="btn btn-secondary">Kembali ke Dashboard</a>
         <table class="table table-bordered mt-3">
             <thead>
                 <tr>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feedback Form</title>
+    <title>Feedback Form - Mahasiswa</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../DashboardSikmatu/css/style.css">
     <script src="../DashboardSikmatu/js/script.js" defer></script>
@@ -149,7 +149,7 @@
                         <li><i class="fa-regular fa-comment"></i> <a href="feedback.php" class="link">Feedback</a></li>
                     </ul>
                 </li>
-                <li><i class="fa-solid fa-sign-out-alt"></i> <a href="logout.php" class="link">Logout</a></li>
+                <li><i class="fa-solid fa-sign-out-alt"></i> <a href="../Sikmatu_LoginSign/logout.php" class="link">Logout</a></li>
             </ul>
         </nav>
     </aside>
@@ -157,12 +157,12 @@
     <!-- Main Content -->
     <main class="main-content">
         <header>
-            <h1>Feedback</h1>
+            <h1>Feedback - Mahasiswa</h1>
             <div class="profile">
                 <img src="../img/6522516.png" alt="profile">
                 <div class="dropdown">
                     <ul>
-                        <li><a href="logout.php">Logout</a></li>
+                        <li><a href="../Sikmatu_LoginSign/logout.php">Logout</a></li>
                     </ul>
                 </div>
             </div>

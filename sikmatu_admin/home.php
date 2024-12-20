@@ -40,12 +40,12 @@ $userRole = $_SESSION['role'];
                     <i class="fa-solid fa-book"></i> Pages
                     <i class="fa-solid fa-chevron-down"></i>
                     <ul class="submenu">
-                        <li><i class="fa-regular fa-calendar"></i> <a href="jadwal.php" class="link">Jadwal Konseling</a></li>
-                        <li><i class="fa-solid fa-users"></i> <a href="antrian.php" class="link">Antrean Konseling</a></li>
+                        <li><i class="fa-regular fa-calendar"></i> <a href="jadwal_admin/jadwal.php" class="link">Jadwal Konseling</a></li>
+                        <li><i class="fa-solid fa-users"></i> <a href="antrian_admin/antrian.php" class="link">Antrean Konseling</a></li>
                         <li><i class="fa-regular fa-comment"></i> <a href="adminFeedback.php" class="link">Feedback</a></li>
                     </ul>
                 </li>
-                <li><i class="fa-solid fa-sign-out-alt"></i> <a href="logout.php" class="link">Logout</a></li>
+                <li><i class="fa-solid fa-sign-out-alt"></i> <a href="../Sikmatu_LoginSign/logout.php" class="link">Logout</a></li>
             </ul>
         </nav>
     </aside>
@@ -53,12 +53,12 @@ $userRole = $_SESSION['role'];
     <!-- Main Content -->
     <main class="main-content">
         <header>
-            <h1>Dashboard</h1>
+            <h1>Dashboard - Admin</h1>
             <div class="profile">
                 <img src="../img/6522516.png" alt="profile">
                 <div class="dropdown">
                     <ul>
-                        <li><a href="logout.php">Logout</a></li>
+                        <li><a href="../Sikmatu_LoginSign/logout.php">Logout</a></li>
                     </ul>
                 </div>
             </div>
@@ -74,11 +74,11 @@ $userRole = $_SESSION['role'];
         <section class="cards">
             <div class="card blue">
                 <h2>Jadwal Konseling</h2>
-                <a href="#">Lihat Detail →</a>
+                <a href="jadwal_admin/jadwal.php">Lihat Detail →</a>
             </div>
             <div class="card yellow">
                 <h2>Antrean Konseling</h2>
-                <a href="#">Lihat Detail →</a>
+                <a href="antrian_admin/antrian.php">Lihat Detail →</a>
             </div>
             <div class="card green">
                 <h2>Feedback</h2>
@@ -103,7 +103,7 @@ $userRole = $_SESSION['role'];
         </section>
         <!-- Cara Kerja -->
         <section class="workflow">
-            <h2>PSOSEDUR KONSELING SIKMATU</h2>
+            <h2>PROSEDUR KONSELING SIKMATU</h2>
             <div class="workflow-container">
                 <div class="workflow-step">
                     <div class="icon">1</div>
